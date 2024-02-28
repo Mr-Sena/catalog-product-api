@@ -1,0 +1,32 @@
+
+
+AWS infra configure: 
+
+ - Create SQS queue.
+ - Create the SNS Topic. 
+ - Attach the sqs:SendMessage Policy Access to allow receiver message from SNS Topic.
+ - Subscribe the queue to SNS Topic.
+ 
+ - Create user who will publish. 
+ 
+   Permitir o acesso: 
+ 
+   - S3FullAccess
+   - SQSFullAccess
+   - SNSFullAcces.
+   
+ This user could be defined for ide localhost request.
+ 
+ - Get access key to connect user from ide.
+ 
+ 
+ 
+ + Create the AWS Lambda
+
+   Habilitar a role para permitir as políticas de acesso:
+     [ iam -> Roles -> Lambda-role -> Add Permission --> Attach Policies. ]
+     --> S3 Access
+     --> SQS Queue Execution Role
+ 
+  - ADD SQS trigger.
+  
