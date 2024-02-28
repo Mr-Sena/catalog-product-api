@@ -3,6 +3,7 @@ package anotaai.blueprint.catalogproductapi.domain.category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,5 +25,19 @@ public class Category {
         this.title = categoryData.title();
         this.desc = categoryData.desc();
         this.ownerId = categoryData.ownerId();
+    }
+
+
+    @Override
+    public String toString() {
+
+        JSONObject json = new JSONObject();
+        json.put("title", this.title);
+        json.put("desc", this.desc);
+        json.put("ownerId", this.ownerId);
+        json.put("id", this.id);
+        json.put("type", "category");
+
+        return json.toString();
     }
 }

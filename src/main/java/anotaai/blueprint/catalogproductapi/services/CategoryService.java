@@ -4,6 +4,8 @@ import anotaai.blueprint.catalogproductapi.domain.category.Category;
 import anotaai.blueprint.catalogproductapi.domain.category.CategoryDTO;
 import anotaai.blueprint.catalogproductapi.domain.exceptions.CategoryNotFoundException;
 import anotaai.blueprint.catalogproductapi.repositories.CategoryRepository;
+import anotaai.blueprint.catalogproductapi.services.aws.AwsSnsService;
+import anotaai.blueprint.catalogproductapi.services.aws.MessageDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,18 +14,21 @@ import java.util.Optional;
 @Service
 public class CategoryService {
 
-    private CategoryRepository repository;
+    private final CategoryRepository repository;
 
-    public CategoryService(CategoryRepository repository) {
+    private final AwsSnsService snsService;
+
+
+    public CategoryService(CategoryRepository repository, AwsSnsService snsService) {
         this.repository = repository;
+        this.snsService = snsService;
     }
-
-
 
     public Category insert(CategoryDTO categoryData) {
 
         var newCategory = new Category(categoryData);
         this.repository.save(newCategory);
+        snsService.publishEvent(new MessageDTO(newCategory.toString()));
         return newCategory;
     }
 
@@ -37,6 +42,8 @@ public class CategoryService {
         if (!categoryData.desc().isEmpty()) category.setDesc(categoryData.desc());
 
         this.repository.save(category);
+
+        snsService.publishEvent(new MessageDTO(category.toString()));
         return category;
     }
 

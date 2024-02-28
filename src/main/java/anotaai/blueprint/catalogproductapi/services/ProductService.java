@@ -6,6 +6,8 @@ import anotaai.blueprint.catalogproductapi.domain.exceptions.ProductNotFoundExce
 import anotaai.blueprint.catalogproductapi.domain.product.Product;
 import anotaai.blueprint.catalogproductapi.domain.product.ProductDTO;
 import anotaai.blueprint.catalogproductapi.repositories.ProductRepository;
+import anotaai.blueprint.catalogproductapi.services.aws.AwsSnsService;
+import anotaai.blueprint.catalogproductapi.services.aws.MessageDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,23 +15,27 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private ProductRepository productRepository;
-    private CategoryService categoryService;
+    private final ProductRepository productRepository;
+    private final CategoryService categoryService;
 
-    public ProductService(ProductRepository productRepository, CategoryService categoryService) {
+    private final AwsSnsService snsService;
+
+    public ProductService(ProductRepository productRepository, CategoryService categoryService, AwsSnsService snsService) {
         this.productRepository = productRepository;
         this.categoryService = categoryService;
+        this.snsService = snsService;
     }
 
 
 
     public Product insert(ProductDTO productData) {
 
-        var category = categoryService.getById(productData.categoryId())
+        categoryService.getById(productData.categoryId())
                 .orElseThrow(CategoryNotFoundException::new);
         var newProduct = new Product(productData);
-        newProduct.setCategory(category);
         this.productRepository.save(newProduct);
+
+        snsService.publishEvent(new MessageDTO(newProduct.toString()));
         return newProduct;
     }
 
@@ -45,10 +51,12 @@ public class ProductService {
 
         if (productData.categoryId() != null) {
             categoryService.getById(productData.categoryId())
-                    .ifPresent(product::setCategory);
+                    .orElseThrow(CategoryNotFoundException::new);
+            product.setCategoryId(productData.categoryId());
         }
 
         this.productRepository.save(product);
+        snsService.publishEvent(new MessageDTO(product.toString()));
         return product;
     }
 
