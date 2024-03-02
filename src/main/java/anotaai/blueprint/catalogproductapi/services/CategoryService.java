@@ -66,5 +66,7 @@ public class CategoryService {
                 .orElseThrow(CategoryNotFoundException::new);
 
         this.repository.delete(category);
+
+        snsService.publishEvent( new MessageDTO(category.stringToRemove()) );
     }
 }

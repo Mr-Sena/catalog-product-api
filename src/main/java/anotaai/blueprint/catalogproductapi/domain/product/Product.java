@@ -23,6 +23,7 @@ public class Product {
     private Integer price; // The value will be multiplied by 100 for preserver the decimal values.
     private String categoryId;
 
+
     public Product(ProductDTO productData) {
 
         this.title = productData.title();
@@ -44,6 +45,15 @@ public class Product {
         json.put("ownerId", this.ownerId);
         json.put("categoryId", this.categoryId);
         json.put("type", "product");
+
+        return json.toString();
+    }
+
+    public String stringToRemove(){
+        JSONObject json = new JSONObject();
+        json.put("id", this.id);
+        json.put("ownerId", this.ownerId);
+        json.put("type", "remove-product");
 
         return json.toString();
     }

@@ -71,5 +71,7 @@ public class ProductService {
                 .orElseThrow(ProductNotFoundException::new);
 
         this.productRepository.delete(product);
+
+        snsService.publishEvent( new MessageDTO(product.stringToRemove()) );
     }
 }

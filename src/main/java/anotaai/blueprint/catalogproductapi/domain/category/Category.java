@@ -20,6 +20,7 @@ public class Category {
     private String desc;
     private String ownerId;
 
+
     public Category(CategoryDTO categoryData) {
 
         this.title = categoryData.title();
@@ -37,6 +38,16 @@ public class Category {
         json.put("ownerId", this.ownerId);
         json.put("id", this.id);
         json.put("type", "category");
+
+        return json.toString();
+    }
+
+
+    public String stringToRemove(){
+        JSONObject json = new JSONObject();
+        json.put("id", this.id);
+        json.put("ownerId", this.ownerId);
+        json.put("type", "remove-category");
 
         return json.toString();
     }
