@@ -1,0 +1,15 @@
+version: '3.7'
+
+volumes:
+  api_mongo_volume:
+
+services:
+  mongo-datasource:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - api_mongo_volume:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongouser
+      MONGO_INITDB_ROOT_PASSWORD: mongopwd
