@@ -2,7 +2,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/static/v1?label=GitHub Profile:&message=@Mr-Sena&color=8257E5&labelColor=000000" alt="@Mr-Sena">
-<img src="https://img.shields.io/static/v1?label=Tipo&message=Desafio&color=8257E5&labelColor=000000" alt="Desafio">
+<img src="https://img.shields.io/static/v1?label=Tipo&message=Desafio&color=8257E5&labelColor=000000" alt="Blueprint">
 </p>
 
 Esse sistema representa o desenvolvimento de uma Api realizada, para gerenciar um sistema de catálogo de produtos.
