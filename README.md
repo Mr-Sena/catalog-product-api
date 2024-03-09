@@ -57,10 +57,10 @@ Esse sistema representa o desenvolvimento de uma Api realizada, para gerenciar u
 
  * Provisionamento AWS Service disponível: [Terraform infra as code](https://github.com/Mr-Sena/catalog-product-infra-terraform)
 
-
+<br<
 
 ## Api Endpoints
-
+<br>
 
 ### Api Category Template
 
