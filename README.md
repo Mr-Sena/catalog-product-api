@@ -43,11 +43,12 @@ Esse sistema representa o desenvolvimento de uma Api realizada, para gerenciar u
 
 ## Procedimentos para o executar o aplicativo: 
 
- * ### Ferramentas que precisam instalar:
+### Ferramentas que precisam instalar:
 
 
- > * Docker, para executar o container
- > * Maven, para gerenciamento de pacotes do projeto.
+ * Docker, para executar o container
+
+ * Maven, para gerenciamento de pacotes do projeto.
  
 
 > Necessário instalar o Java 17.
