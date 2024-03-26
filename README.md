@@ -11,7 +11,7 @@ Esse sistema representa o desenvolvimento de uma Api realizada, para gerenciar u
 ## Links Reference:
 
  - AWS Datacenter Config: [Terraform infra as code](https://github.com/Mr-Sena/catalog-product-infra-terraform)
- - Serverless Consumer Repository: [Consumer-Lambda-Catalog](https://github.com/Mr-Sena/Consumer-Lambda-Catalog) - The same origin of the [*index.mjs*](./index.mjs) file.
+ - Serverless Consumer Repository: [Consumer-Lambda-Catalog](https://github.com/Mr-Sena/Consumer-Lambda-Catalog)
  
 
  <br>
@@ -43,21 +43,36 @@ Esse sistema representa o desenvolvimento de uma Api realizada, para gerenciar u
 
 ## Procedimentos para o executar o aplicativo: 
 
+ * ### Ferramentas que precisam instalar:
+
+
+ > * Docker, para executar o container
+ > * Maven, para gerenciamento de pacotes do projeto.
+ 
+
+> Necessário instalar o Java 17.
+
+<br>
+
 1. Executar o container para criar a base de dados: 
 
 ```
- > docker compose up
+ docker compose up
 ```
 
 2. Executar o aplicativo.
 ```
- > mvn spring-boot:run
+ mvn spring-boot:run
 ```
+
+<br>
+
+ > O arquivo .properties possui a área para o incluir o ARN do tópico SNS.
 
 
  * Provisionamento AWS Service disponível: [Terraform infra as code](https://github.com/Mr-Sena/catalog-product-infra-terraform)
 
-<br<
+<br>
 
 ## Api Endpoints
 <br>
