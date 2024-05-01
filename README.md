@@ -69,6 +69,7 @@ Esse sistema representa o desenvolvimento de uma Api realizada, para gerenciar u
 <br>
 
  > O arquivo .properties possui a área para o incluir o ARN do tópico SNS.
+ > [path: src/main/resources] 
 
 
  * Provisionamento AWS Service disponível: [Terraform infra as code](https://github.com/Mr-Sena/catalog-product-infra-terraform)
